@@ -24,7 +24,7 @@ vim.o.shiftwidth = 4   -- Number of spaces inserted when indenting
 
 
 require("lazy").setup("plugins")
-require('ts_context_commentstring').setup{}
+-- require('ts_context_commentstring').setup{}
 require "user.autopairs"
 
 -- When we are bootstrapping a configuration, it doesn't
@@ -68,8 +68,8 @@ vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.cmd[[
-colorscheme kanagawa
+vim.cmd [[
+colorscheme tokyonight
 ]]
 -- vim.cmd [[colorscheme tokyonight]]
 
@@ -123,18 +123,6 @@ require('gitsigns').setup {
   },
 }
 
--- [[ Configure Telescope ]]
--- See `:help telescope` and `:help telescope.setup()`
-require('telescope').setup {
-  defaults = {
-    mappings = {
-      i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
-      },
-    },
-  },
-}
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
@@ -194,6 +182,7 @@ local on_attach = function(_, bufnr)
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+
 
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -323,16 +312,13 @@ cmp.setup {
 require("harpoon").setup()
 vim.keymap.set('n', '<leader>a', "<cmd>lua require('harpoon.mark').add_file()<cr>", { desc = '[A]dd file to Harpoon' })
 vim.keymap.set('n', '<leader>m', require('harpoon.ui').toggle_quick_menu, { desc = 'Toggle Quick [M]enu' })
-vim.keymap.set('n', '<leader>n', require('harpoon.ui').nav_next, { desc = '[N]av Next' })
-vim.keymap.set('n', '<leader>q', require('harpoon.ui').nav_prev, { desc = 'Nav Prev' })
+vim.keymap.set('n', '<leader>hn', require('harpoon.ui').nav_next, { desc = '[N]av Next' })
+vim.keymap.set('n', '<leader>hq', require('harpoon.ui').nav_prev, { desc = 'Nav Prev' })
 
 vim.keymap.set('n', '<leader>1', "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", { desc = 'Nav to File [1]' })
 vim.keymap.set('n', '<leader>2', "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", { desc = 'Nav to File [2]' })
 vim.keymap.set('n', '<leader>3', "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", { desc = 'Nav to File [3]' })
----- Harpoon Nav File
---map("n", "<leader>1", "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", {noremap = true})
---map("n", "<leader>2", "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", {noremap = true})
---map("n", "<leader>3", "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", {noremap = true})
+vim.keymap.set('n', '<leader>4', "<cmd>lua require('harpoon.ui').nav_file(4)<cr>", { desc = 'Nav to File [4]' })
 
 
 vim.opt.list = true
@@ -381,8 +367,6 @@ vim.api.nvim_set_keymap("n", "<C-h>", ":NvimTreeToggle<cr>", { silent = true, no
 -- vim.keymap.set("n", "h", api.tree.close,        opts("Close"))
 -- vim.keymap.set("n", "H", api.tree.collapse_all, opts("Collapse All"))
 --
--- Enable `lukas-reineke/indent-blankline.nvim`
--- See `:help indent_blankline.txt`
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
