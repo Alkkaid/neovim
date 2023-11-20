@@ -24,6 +24,10 @@ require('nvim-treesitter.configs').setup {
         enable = true,
         enable_autocmd = false,
     },
+    -- nvim-ts-autotag
+    autotag = {
+        enable = true,
+    },
 
     highlight = { enable = true },
     indent = { enable = true, disable = { 'python', 'html' } },

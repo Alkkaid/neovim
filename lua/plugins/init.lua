@@ -51,6 +51,7 @@ return {
             enable_autocmd = false,
         },
     },
+    {"windwp/nvim-ts-autotag"},
     -- { 'folke/which-key.nvim',  opts = {} },
     {
         -- Adds git related signs to the gutter, as well as utilities for managing changes
