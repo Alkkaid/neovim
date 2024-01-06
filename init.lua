@@ -24,7 +24,10 @@ vim.o.shiftwidth = 4   -- Number of spaces inserted when indenting
 
 
 require("lazy").setup("plugins")
--- require('ts_context_commentstring').setup{}
+vim.g.skip_ts_context_commentstring_module = true
+require('ts_context_commentstring').setup {
+  enable_autocmd = false,
+}
 require "user.autopairs"
 
 -- When we are bootstrapping a configuration, it doesn't
@@ -360,6 +363,7 @@ local function vsplit_preview()
 end
 
 vim.api.nvim_set_keymap("n", "<C-h>", ":NvimTreeToggle<cr>", { silent = true, noremap = true })
+
 
 -- on_attach
 -- vim.keymap.set("n", "l", edit_or_open,          opts("Edit Or Open"))

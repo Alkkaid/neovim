@@ -47,9 +47,9 @@ return {
     {
         "JoosepAlviste/nvim-ts-context-commentstring",
         lazy = true,
-        opts = {
-            enable_autocmd = false,
-        },
+        -- opts = {
+        --     enable_autocmd = false,
+        -- },
     },
     {"windwp/nvim-ts-autotag"},
     -- { 'folke/which-key.nvim',  opts = {} },
