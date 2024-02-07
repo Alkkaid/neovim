@@ -3,44 +3,44 @@ return {
     --  The configuration is done below. Search for lspconfig to find it below.
     {
         -- LSP Configuration & Plugins
-        'neovim/nvim-lspconfig',
+        "neovim/nvim-lspconfig",
         dependencies = {
             -- Automatically install LSPs to stdpath for neovim
-            'williamboman/mason.nvim',
-            'williamboman/mason-lspconfig.nvim',
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim",
 
             -- Useful status updates for LSP
             -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-            { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
+            { "j-hui/fidget.nvim", tag = "legacy", opts = {} },
 
             -- Additional lua configuration, makes nvim stuff amazing!
-            'folke/neodev.nvim',
+            "folke/neodev.nvim",
         },
     },
     -- Autocompletion
     {
-        'hrsh7th/nvim-cmp',
+        "hrsh7th/nvim-cmp",
         dependencies = {
-            'hrsh7th/cmp-nvim-lsp',
-            'L3MON4D3/LuaSnip',
-            'saadparwaiz1/cmp_luasnip'
-        }
+            "hrsh7th/cmp-nvim-lsp",
+            "L3MON4D3/LuaSnip",
+            "saadparwaiz1/cmp_luasnip",
+        },
     },
     {
         -- Highlight, edit, and navigate code
-        'nvim-treesitter/nvim-treesitter',
+        "nvim-treesitter/nvim-treesitter",
         dependencies = {
-            'JoosepAlviste/nvim-ts-context-commentstring',
-            'nvim-treesitter/nvim-treesitter-textobjects',
+            "JoosepAlviste/nvim-ts-context-commentstring",
+            "nvim-treesitter/nvim-treesitter-textobjects",
         },
         event = {
             "BufReadPre",
             "BufReadPre",
         },
-        build = ':TSUpdate',
+        build = ":TSUpdate",
         config = function()
-            require('plugins.config.treesitter')
-        end
+            require("plugins.config.treesitter")
+        end,
     },
     -- Useful plugin to show you pending keybinds.
     -- Possible Removal
@@ -51,100 +51,103 @@ return {
         --     enable_autocmd = false,
         -- },
     },
-    {"windwp/nvim-ts-autotag"},
+    { "windwp/nvim-ts-autotag" },
     -- { 'folke/which-key.nvim',  opts = {} },
     {
         -- Adds git related signs to the gutter, as well as utilities for managing changes
-        'lewis6991/gitsigns.nvim',
+        "lewis6991/gitsigns.nvim",
         opts = {
             -- See `:help gitsigns.txt`
             signs = {
-                add = { text = '+' },
-                change = { text = '~' },
-                delete = { text = '_' },
-                topdelete = { text = '‾' },
-                changedelete = { text = '~' },
+                add = { text = "+" },
+                change = { text = "~" },
+                delete = { text = "_" },
+                topdelete = { text = "‾" },
+                changedelete = { text = "~" },
             },
             on_attach = function(bufnr)
-                vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk,
-                    { buffer = bufnr, desc = 'Preview git hunk' })
+                vim.keymap.set(
+                    "n",
+                    "<leader>hp",
+                    require("gitsigns").preview_hunk,
+                    { buffer = bufnr, desc = "Preview git hunk" }
+                )
 
                 -- don't override the built-in and fugitive keymaps
                 local gs = package.loaded.gitsigns
-                vim.keymap.set({ 'n', 'v' }, ']c', function()
+                vim.keymap.set({ "n", "v" }, "]c", function()
                     if vim.wo.diff then
-                        return ']c'
+                        return "]c"
                     end
                     vim.schedule(function()
                         gs.next_hunk()
                     end)
-                    return '<Ignore>'
-                end, { expr = true, buffer = bufnr, desc = 'Jump to next hunk' })
-                vim.keymap.set({ 'n', 'v' }, '[c', function()
+                    return "<Ignore>"
+                end, { expr = true, buffer = bufnr, desc = "Jump to next hunk" })
+                vim.keymap.set({ "n", "v" }, "[c", function()
                     if vim.wo.diff then
-                        return '[c'
+                        return "[c"
                     end
                     vim.schedule(function()
                         gs.prev_hunk()
                     end)
-                    return '<Ignore>'
-                end, { expr = true, buffer = bufnr, desc = 'Jump to previous hunk' })
+                    return "<Ignore>"
+                end, { expr = true, buffer = bufnr, desc = "Jump to previous hunk" })
             end,
         },
     },
 
     -- Git related plugins
-    'tpope/vim-fugitive',
-    'tpope/vim-rhubarb',
+    "tpope/vim-fugitive",
+    "tpope/vim-rhubarb",
 
     {
         -- Set lualine as statusline
-        'nvim-lualine/lualine.nvim',
+        "nvim-lualine/lualine.nvim",
         -- See `:help lualine.txt`
         opts = {
             options = {
                 icons_enabled = false,
-                theme = 'tokyonight',
-                component_separators = '|',
-                section_separators = '',
+                theme = "tokyonight",
+                component_separators = "|",
+                section_separators = "",
             },
         },
     },
     {
         -- Add indentation guides even on blank lines
-        'lukas-reineke/indent-blankline.nvim',
+        "lukas-reineke/indent-blankline.nvim",
         -- Enable `lukas-reineke/indent-blankline.nvim`
         -- See `:help ibl`
-        main = 'ibl',
+        main = "ibl",
         config = function()
             require("plugins.config.ibl")
-        end
+        end,
     },
     -- "gc" to comment visual regions/lines
     {
-        'numToStr/Comment.nvim',
+        "numToStr/Comment.nvim",
         lazy = false,
         config = function()
             require("plugins.config.comment")
-        end
-
+        end,
     },
     --  use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
 
     -- Fuzzy Finder (files, lsp, etc)
     {
-        'nvim-telescope/telescope.nvim',
-        branch = '0.1.x',
+        "nvim-telescope/telescope.nvim",
+        branch = "0.1.x",
         dependencies = {
-            'nvim-lua/plenary.nvim',
+            "nvim-lua/plenary.nvim",
             -- Fuzzy Finder Algorithm which requires local dependencies to be built.
             -- Only load if `make` is available. Make sure you have the system
             -- requirements installed.
             {
-                'nvim-telescope/telescope-fzf-native.nvim',
-                build = 'make',
+                "nvim-telescope/telescope-fzf-native.nvim",
+                build = "make",
                 cond = function()
-                    return vim.fn.executable 'make' == 1
+                    return vim.fn.executable("make") == 1
                 end,
             },
         },
@@ -155,7 +158,7 @@ return {
 
     --My Plugins
     --use 'mfussenegger/nvim-jdtls'
-    'ThePrimeagen/harpoon',
+    "ThePrimeagen/harpoon",
     "windwp/nvim-autopairs",
     {
         "nvim-tree/nvim-tree.lua",
@@ -165,7 +168,7 @@ return {
             "nvim-tree/nvim-web-devicons",
         },
         config = function()
-            require("nvim-tree").setup {}
+            require("nvim-tree").setup({})
         end,
     },
     -- Colorschemes
@@ -222,9 +225,17 @@ return {
             -- your configuration comes here
             -- or leave it empty to use the default settings
             -- refer to the configuration section below
-        }
-    }
-
+        },
+    },
+    {
+        "nvimtools/none-ls.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+    },
+    {
+        "folke/trouble.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        opts = {},
+    },
 
     -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
     -- local has_plugins, plugins = pcall(require, 'custom.plugins')

@@ -29,6 +29,7 @@ require('ts_context_commentstring').setup {
   enable_autocmd = false,
 }
 require "user.autopairs"
+require "user.none-ls"
 
 -- When we are bootstrapping a configuration, it doesn't
 -- make sense to execute the rest of the init.lua.
@@ -364,6 +365,9 @@ end
 
 vim.api.nvim_set_keymap("n", "<C-h>", ":NvimTreeToggle<cr>", { silent = true, noremap = true })
 
+-- NOTE: This is for trouble.nvim 
+-- If you want to modify this, you really need to read the docs because i didn't
+vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
 
 -- on_attach
 -- vim.keymap.set("n", "l", edit_or_open,          opts("Edit Or Open"))
